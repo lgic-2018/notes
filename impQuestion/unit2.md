@@ -1,4 +1,4 @@
-## Difference between abstract class concrete class and interface class with example java?
+## 1. Difference between abstract class concrete class and interface class with example java?
 
 
 
@@ -110,7 +110,7 @@ Drawing a circle
 ```
 In summary, abstract classes provide a common interface and may have implemented methods, concrete classes are regular classes that provide the actual implementation, and interfaces define contracts for classes to implement.
 
-## explain android activity with example?
+## 2. Explain android activity with example?
 In Android, an activity is a core component of an application that represents a single screen with a user interface (UI). It serves as a container for UI elements such as buttons, text fields, and images, and handles user interactions and events. Activities are used to present different screens to the user, allowing them to navigate through different parts of the application.
 
 Each activity in an Android application is implemented as a subclass of the Activity class. Activities have a lifecycle that defines their behavior and state as they are created, started, paused, resumed, stopped, and destroyed. The activity lifecycle is managed by the Android system, and developers can override specific methods to customize the behavior and respond to lifecycle events.
@@ -178,5 +178,43 @@ In this example, the `activity_main.xml` layout file defines a `LinearLayout` wi
 This example demonstrates how an activity can use a layout file to define the UI elements and how the activity class can interact with those elements by referencing their IDs and setting event listeners.
 
 
-<!-- ## What is the difference between Serializable and Parcelable?
-Both Serializable and Parcelable are interfaces used to marshal Java objects into another representation. The main difference between the two is that Parcelable is faster than Serializable but requires more work to implement. Parcelable also does not use reflection to read and write the values, which can be a significant performance improvement. -->
+## 3. Explain manifest file in android with example ?
+The manifest file (AndroidManifest.xml) is an essential configuration file for an Android application.This file contains information of your package, including components of the application such as activities, services, broadcast receivers, content providers etc. It performs some other tasks also: 
+1. `<manifest>:` This is the root element of the manifest file. It contains attributes like package name and version code.
+2.`<uses-permission>:` This tag is used to declare the permissions required by the application, such as accessing the internet, reading contacts, or using the camera.
+3. `<application>:` This tag encapsulates the entire application and contains attributes and child elements related to the application.
+4. `<activity>:` Represents an activity (screen) in your application. It defines the name of the activity, its launch mode, intent filters, and more.
+5. ` <service>:` Declares a service component in your application, which runs in the background to perform tasks independently of any user interface.
+6. `<receiver>:` Defines a broadcast receiver component in your application, which listens for system-wide or application-specific broadcast events.
+7. `<provider>:` Declares a content provider component that allows your application to share data with other applications.
+8. `<intent-filter>:` Specifies the type of intents that an activity, service, or receiver can respond to. It includes actions, categories, and data types.
+9. `<meta-data>:` This tag allows you to attach metadata to various components in your application, providing additional information or configuration options.
+
+an example of a simple Android manifest file:
+```
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:label="@string/app_name"
+        android:icon="@drawable/app_icon">
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/main_activity_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
+```
+
+In this example, the manifest file declares the package name, uses the INTERNET permission, and defines an application with an activity called MainActivity. The activity has an intent filter specifying that it should be launched when the application is started.
+
