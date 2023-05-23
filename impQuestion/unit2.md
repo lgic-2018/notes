@@ -110,111 +110,106 @@ Drawing a circle
 ```
 In summary, abstract classes provide a common interface and may have implemented methods, concrete classes are regular classes that provide the actual implementation, and interfaces define contracts for classes to implement.
 
-## 2. Explain android activity with example?
-In Android, an activity is a core component of an application that represents a single screen with a user interface (UI). It serves as a container for UI elements such as buttons, text fields, and images, and handles user interactions and events. Activities are used to present different screens to the user, allowing them to navigate through different parts of the application.
+## 2. Differentiate between class and object ? write a class , instantiate it and explain
 
-Each activity in an Android application is implemented as a subclass of the Activity class. Activities have a lifecycle that defines their behavior and state as they are created, started, paused, resumed, stopped, and destroyed. The activity lifecycle is managed by the Android system, and developers can override specific methods to customize the behavior and respond to lifecycle events.
+**Class:**
+A class is a blueprint or template that defines the structure and behavior of objects. It specifies the attributes (variables) and methods (functions) that objects of that class will have. It acts as a blueprint for creating multiple instances (objects) with similar characteristics.A class can be considered as a user-defined data type.
 
-Activities have several important responsibilities:
-
-1. **UI Presentation:** An activity is responsible for presenting the UI to the user. It defines the layout and arrangement of UI elements on the screen and handles user interactions such as button clicks or text input.
-
-2. **Lifecycle Management:** Activities manage their own lifecycle, which includes methods for creation, starting, pausing, resuming, stopping, and destroying. Developers can override these methods to perform specific actions at each lifecycle stage, such as initializing resources, saving and restoring state, or releasing system resources.
-
-3. **Inter-Activity Communication:** Activities can communicate with each other using intents. An intent is a message that allows activities to request actions from other activities or pass data between them. For example, one activity can start another activity to perform a specific task or provide data.
-
-4. **Backstack Management:** The Android system maintains a backstack of activities that allows users to navigate backward through the screens they have visited. Activities can be added to the backstack, removed from it, or reordered to control the navigation flow.
-
-5. **Result Handling:** Activities can start other activities for a result. For example, an activity can start a "pick contact" activity and receive the selected contact as a result. This mechanism allows activities to interact and exchange data with each other.
-
-6. **Permissions:** Activities can require permissions to perform certain actions, such as accessing the internet or reading the user's contacts. Permissions are requested from the user at runtime and can be granted or denied by the user.
-
-Here's an example of an activity with a layout file:
-1. **activity_main.xml** (layout file):
+**Object:**
+An object is an instance of a class. It represents a specific occurrence of the class, with its own set of attribute values and can perform actions defined by the class's methods. Objects are created using the new keyword, which allocates memory for the object and calls the class's constructor to initialize it. Each object has its own unique state and behavior, while still adhering to the structure and behavior defined by the class.
 ```
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".MainActivity">
+// Class definition
+public class Car {
+    private String make;
+    private String model;
+    private int year;
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello, Android Activity!"
-        android:textSize="24sp" />
+    public Car(String make, String model, int year) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+    }
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Click Me" />
+    public void startEngine() {
+        System.out.println("The engine is now running.");
+    }
 
-</LinearLayout>
-```
-2. **MainActivity.java** (activity class):
-```
-public class MainActivity extends AppCompatActivity {
+    public void stopEngine() {
+        System.out.println("The engine has been stopped.");
+    }
+}
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+// Object instantiation and usage
+public class Main {
+    public static void main(String[] args) {
+        // Creating an object (instance) of the Car class
+        Car myCar = new Car("Toyota", "Camry", 2022);
 
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Button clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
+        // Accessing object attributes
+        System.out.println("Make: " + myCar.make);
+        System.out.println("Model: " + myCar.model);
+        System.out.println("Year: " + myCar.year);
+
+        // Calling object methods
+        myCar.startEngine();
+        myCar.stopEngine();
     }
 }
 ```
-In this example, the `activity_main.xml` layout file defines a `LinearLayout` with a `TextView` and a `Button`. The `MainActivity` class extends `AppCompatActivity` and overrides the `onCreate()` method. In `onCreate()`, the layout is inflated using `setContentView(R.layout.activity_main)`. The `Button` is initialized using `findViewById(R.id.button)`, and an `OnClickListener` is set to display a toast message when the button is clicked.
-
-This example demonstrates how an activity can use a layout file to define the UI elements and how the activity class can interact with those elements by referencing their IDs and setting event listeners.
+we define a class called `Car` with private attributes (`make`, `model`, and `year`) and public methods (`startEngine` and `stopEngine`). We then create an object `myCar` by instantiating the `Car` class using the `new` keyword and passing the required arguments to the constructor. Finally, we access the object's attributes and call its methods using the object reference(`myCar`).
 
 
-## 3. Explain manifest file in android with example ?
-The manifest file (AndroidManifest.xml) is an essential configuration file for an Android application.This file contains information of your package, including components of the application such as activities, services, broadcast receivers, content providers etc. It performs some other tasks also: 
-1. `<manifest>:` This is the root element of the manifest file. It contains attributes like package name and version code.
-2.`<uses-permission>:` This tag is used to declare the permissions required by the application, such as accessing the internet, reading contacts, or using the camera.
-3. `<application>:` This tag encapsulates the entire application and contains attributes and child elements related to the application.
-4. `<activity>:` Represents an activity (screen) in your application. It defines the name of the activity, its launch mode, intent filters, and more.
-5. ` <service>:` Declares a service component in your application, which runs in the background to perform tasks independently of any user interface.
-6. `<receiver>:` Defines a broadcast receiver component in your application, which listens for system-wide or application-specific broadcast events.
-7. `<provider>:` Declares a content provider component that allows your application to share data with other applications.
-8. `<intent-filter>:` Specifies the type of intents that an activity, service, or receiver can respond to. It includes actions, categories, and data types.
-9. `<meta-data>:` This tag allows you to attach metadata to various components in your application, providing additional information or configuration options.
+Execution Model	Just-In-Time (JIT) compilation	Ahead-Of-Time (AOT) compilation
+Performance	Some overhead during initial execution, but good performance once code is compiled	Improved startup times and overall performance due to pre-compiled native machine code
+Memory Usage	Additional memory required for storing JIT-compiled machine code	Reduced runtime memory footprint as machine code is generated during installation
+Garbage Collection	Concurrent mark and sweep collector, occasional pauses during collection	Concurrent Copying Garbage Collector (CCGC) reduces pause times during collection
 
-an example of a simple Android manifest file:
+
+**Mobile Operating System:**
+A mobile operating system (OS) is a software platform specifically designed to run on mobile devices such as smartphones, tablets, and smartwatches. It provides a framework for managing hardware and software resources, enabling communication between applications and the underlying device components. Mobile operating systems handle tasks such as managing memory, running applications, providing user interfaces, and facilitating connectivity.
+
+***Android Operating System Architecture:***
+
+The architecture of the Android operating system is based on a layered approach, with each layer providing different functionalities. Here is a high-level overview of the Android OS architecture:
+1. **Linux Kernel:** The foundation of the Android OS is the Linux kernel, which handles essential low-level functionalities such as device drivers, memory management, security, and process management. The Linux kernel provides a hardware abstraction layer to interact with the device's hardware components.
+
+2. **Hardware Abstraction Layer (HAL):** This layer provides a standardized interface for Android to interact with various hardware components, including camera, display, sensors, Bluetooth, Wi-Fi, and more. The HAL acts as a bridge between the higher-level Android framework and the underlying device hardware.
+
+3. **Android Runtime (ART):** The ART layer is responsible for executing and managing Android applications. It includes the virtual machine that runs the application code and performs ahead-of-time (AOT) compilation, converting bytecode into native machine code for improved performance. ART also manages memory, garbage collection, and runtime environments for applications.
+
+4. **Native C/C++ Libraries:** Android includes a set of native libraries written in C/C++ that provide core functionalities, such as graphics rendering (OpenGL), media playback, database management (SQLite), and more. These libraries are accessible to developers through the Android application framework.
+
+5. **Java API Framework:** The Java API framework forms the core of Android's application development environment. It provides a rich set of classes and APIs that developers use to build Android applications. The framework includes components such as Activity Manager, Content Providers, Location Manager, Telephony Manager, and others. These components enable developers to access device features and services while ensuring consistent behavior across different Android devices.
+
+6. **System Applications:** The Android OS comes with several pre-installed system applications that offer core functionalities, including phone, contacts, messaging, browser, camera, calendar, and more. These applications serve as reference implementations and can be replaced or enhanced by device manufacturers or third-party applications.
+
+***Android Operating System Structure:***
 ```
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapp">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <application
-        android:label="@string/app_name"
-        android:icon="@drawable/app_icon">
-
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/main_activity_title">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-    </application>
-
-</manifest>
++-----------------------------------------+
+|              Applications               |
++-----------------------------------------+
+|     Android Framework (Java API)        |
++-----------------------------------------+
+|          Android Runtime (ART)          |
++-----------------------------------------+
+|    Native C/C++ Libraries and HAL       |
++-----------------------------------------+
+|             Linux Kernel                |
++-----------------------------------------+
 ```
+![java-jvm](./images/java-architecture.jpg)
 
-In this example, the manifest file declares the package name, uses the INTERNET permission, and defines an application with an activity called MainActivity. The activity has an intent filter specifying that it should be launched when the application is started.
+*Diagram illustrating the structure of the Android operating system:*
+
+
+***Android Operating System Stucture:***
+File System Structure:
+
+1. */system:* Contains core system files and libraries.
+2. */data:* Holds user data, such as app data, user settings, and downloaded files.
+3. */system/app:* Contains pre-installed system applications.
+4. */system/framework:* Includes the Android framework files.
+5. */system/bin* and */system/xbin:* Store system binaries and executables.
+6. */system/lib:* Holds shared libraries used by system components and apps.
+7. */data/data:* Contains the data and settings of installed applications.
 
