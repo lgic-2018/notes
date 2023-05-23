@@ -28,7 +28,7 @@ public class Main {
        Animal animal = new Animal() {
             @Override
             String makeSound() {
-                return "sound...";
+                return "Woof";
             }
         };
         animal.makeSound();
