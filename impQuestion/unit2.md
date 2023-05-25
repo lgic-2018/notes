@@ -16,7 +16,7 @@ An abstract class is a class that cannot be instantiated on its own and serves a
 
 ```
 abstract class Animal {
-    public abstract void makeSound();
+    public abstract String makeSound();
 
     public void sleep() {
         System.out.println("Zzz");
@@ -206,3 +206,70 @@ public class Test {
 	}
 }
 ```
+
+## 4. Write example of Polymorphism in java both runtime and compile time and explain usign example.
+
+**Compile-time polymorphism**, also known as method overloading, occurs when there are multiple methods with the same name but different parameter lists in the same class. The appropriate method is determined by the compiler based on the arguments provided during the method call.
+for example:
+
+```
+public class Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public double add(double a, double b) {
+        return a + b;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Calculator calculator = new Calculator();
+
+        int result1 = calculator.add(5, 10);           // Calls the int add(int a, int b) method
+        double result2 = calculator.add(2.5, 3.7);     // Calls the double add(double a, double b) method
+
+        System.out.println("Result 1: " + result1);    // Output: Result 1: 15
+        System.out.println("Result 2: " + result2);    // Output: Result 2: 6.2
+    }
+}
+```
+In the given example, the Calculator class has two add methods—one that takes two integers and another that takes two doubles. The appropriate method is called based on the arguments passed during the method call at compile time. The compiler resolves the method call to the correct version, and the output depends on the method chosen.
+
+**Runtime polymorphism**, also known as method overriding, occurs when a subclass overrides a method of its superclass. The appropriate method is determined at runtime based on the actual object type.
+
+example:
+
+```
+public class Shape {
+    public void draw() {
+        System.out.println("Drawing a shape");
+    }
+}
+
+public class Circle extends Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a circle");
+    }
+}
+
+public class Rectangle extends Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a rectangle");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Shape shape1 = new Circle();
+        Shape shape2 = new Rectangle();
+        
+        shape1.draw();    // Output: Drawing a circle
+        shape2.draw();    // Output: Drawing a rectangle
+    }
+}
+```
+In the given example, the Shape class is the superclass, and the Circle and Rectangle classes are subclasses that override the draw method. At runtime, the objects shape1 and shape2 are declared as Shape but assigned instances of Circle and Rectangle, respectively. When the draw method is called, the appropriate version of the method is determined based on the actual object type. This is known as dynamic method dispatch, and it allows different behavior based on the specific object being referred to.
