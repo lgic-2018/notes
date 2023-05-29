@@ -127,7 +127,10 @@ Picasso.get().load(imageUrl).into(imageView);
 ```
 
 In this example, we load an image from a URL (https://example.com/image.jpg) using the `load()` method of Picasso. The image is then displayed in an ImageView by calling the `into()` method and passing the ImageView as the target.
-
+`Note: you need to add internet permission in manifest file if you are using internet`
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+```
 Picasso handles image resizing, caching, and memory management automatically, making it easy to work with images in your app without worrying about the complexities involved. It also provides additional features like image transformations, error handling, and callbacks for image loading events.
 
 Here's an example that demonstrates some additional features of Picasso:
