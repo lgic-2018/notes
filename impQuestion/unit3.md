@@ -260,3 +260,5 @@ public class MyFragment extends Fragment {
 
 </LinearLayout>
 ```
+
+## 5. explain android project stucture.
