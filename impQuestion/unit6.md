@@ -42,11 +42,11 @@ In Android, there are several types of animations that can be implemented to enh
 
 These are some of the main types of animations available in Android. Each type has its own use cases and advantages, allowing developers to create engaging and visually appealing animations in their applications.
 
-## 3. What is multimedia? Describe the lite cycle of media player in android java.
+## 3. What is multimedia? Describe the life cycle of media player in android .
 
 Multimedia refers to the integration of different forms of media, such as text, graphics, audio, video, and animations, in a digital format. It encompasses various types of content that can be accessed and consumed by users, including images, videos, music, games, and interactive applications.
 
-In Android Java, a media player is used to play multimedia content, such as audio or video files. The lifecycle of a media player in Android Java typically involves the following stages:
+In Android, a media player is used to play multimedia content, such as audio or video files. The lifecycle of a media player in Android typically involves the following stages:
 
 1. **Initialization:** At this stage, you create an instance of the MediaPlayer class and initialize it with the appropriate data source. You can set the data source to a file, a URL, or a stream.
 

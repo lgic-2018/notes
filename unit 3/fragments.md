@@ -33,7 +33,7 @@ The fragment is being destroyed. Perform any final cleanup here.
 ### onDetach():
 The fragment is no longer associated with its parent activity. Clean up any references to the activity or other fragments in this method.
 
-Here's an example that demonstrates the basic usage of fragment lifecycle methods in Android Java:
+Here's an example that demonstrates the basic usage of fragment lifecycle methods in Android:
 
 ```
 

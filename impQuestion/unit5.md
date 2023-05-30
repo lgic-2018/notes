@@ -1,4 +1,4 @@
-## 1. Describe processes, threads and broadcast Receiver class in android java
+## 1. Describe processes, threads and broadcast Receiver class in android.
 
 1. **Processes:**
 In Android, a process is an isolated instance of an application running in the system. Each application typically runs in its own process to ensure security, stability, and resource management. A process has its own memory space and system resources, and it runs independently of other processes. By default, Android starts the main process for an application when it is launched. However, you can also configure additional processes for specific components or functionalities within the application.
