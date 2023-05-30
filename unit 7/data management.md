@@ -1,4 +1,4 @@
-Data management in an Android project involves handling and organizing data within your application. Here are some common approaches and techniques for effective data management in an Android project:
+Data management in an Android Java project involves handling and organizing data within your application. Here are some common approaches and techniques for effective data management in an Android Java project:
 
 1. **Data Models and POJOs**: Define data models and Plain Old Java Objects (POJOs) to represent the structure and properties of your data. These models should encapsulate the necessary fields and methods to handle and manipulate the data.
 
@@ -154,3 +154,5 @@ editor.apply();
 String value = sharedPreferences.getString("key", "");
 int anotherValue = sharedPreferences.getInt("anotherKey", 0);
 ```
+
+In the example above, `getSharedPreferences()` is used to obtain an instance of `SharedPreferences` by providing a name for the preferences file and a mode for accessing it. Once you have the `SharedPreferences` instance, you can use the `Editor` interface returned by `edit()` to modify the preferences. Finally, you can retrieve values from Shared Preferences using the appropriate getter methods.
