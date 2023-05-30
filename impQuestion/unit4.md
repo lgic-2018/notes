@@ -22,7 +22,7 @@ When you run the app on a device with a smallest width of 600dp or greater, Andr
 
 By following these best practices, you can achieve multiple screen support in your Android application. This approach allows your app's UI to adapt gracefully to different screen sizes, densities, and orientations, providing an optimal user experience across a wide range of Android devices.
 
-## 2. Write an xml for login layout with usemame, password and login in button using Linear out.
+## 2. Write an xml for login layout with usemame, password and login in button using Linear layout.
 
 An example of an XML layout for a login screen using a LinearLayout is shown below:
 

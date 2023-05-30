@@ -15,6 +15,8 @@ Example of a basic `Activity` class in Android:
 
 ### 1. Activity
 
+_Mainactivity.java_
+
 ```java
 import android.app.Activity;
 import android.os.Bundle;
@@ -41,6 +43,30 @@ public class MainActivity extends Activity {
 }
 ```
 
+_activity_main.xml_
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/my_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click Me!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
 In this example, we have a `MainActivity` class that extends the `Activity` class. It represents the main screen of the app.
 
 Inside the `onCreate` method, we perform the following tasks:
@@ -57,11 +83,13 @@ Remember to define the layout XML file (`activity_main.xml` in this example) to 
 This is just a basic example, and there are many other UI classes and concepts in Android development, such as fragments, custom views, and layouts. But the `Activity` class is a fundamental UI class that represents a screen in an Android app.
 
 ### 2. Fragment
+
 <a id="fragment"></a>
- 
-Fragments represent reusable portions of a user interface within an `Activity`. They allow you to create flexible and modular UI components that can be combined and reused across different screens. Fragments have their lifecycle and can be added, removed, and replaced dynamically within an `Activity`. 
+
+Fragments represent reusable portions of a user interface within an `Activity`. They allow you to create flexible and modular UI components that can be combined and reused across different screens. Fragments have their lifecycle and can be added, removed, and replaced dynamically within an `Activity`.
 for example:
 
+*MyFragment.java*
 ```java
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -74,14 +102,31 @@ public class MyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the fragment layout
         View view = inflater.inflate(R.layout.fragment_layout, container, false);
-        
+
         // Initialize and manipulate UI elements
 
         return view;
     }
 }
 ```
+*fragment_layout.xml*
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyFragment">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
+
+</FrameLayout>
+```
+
 ### 3. DialogFragment
+
 <a id="DialogFragment"></a>
 
 DialogFragments are specialized fragments that can be used to display dialog windows on top of an `Activity`. They provide a convenient way to present dialogs with custom layouts and behavior. for example:
@@ -112,36 +157,40 @@ public class MyDialogFragment extends DialogFragment {
 ```
 
 ### 4. View
+
 <a id="View"></a>
 
-   - `Button`: Represents a clickable button.
-   - `TextView`: Displays text on the screen.
-   - `EditText`: Provides an interactive text input field.
-   - `ImageView`: Displays images on the screen.
-   - `CheckBox`: Represents a selectable option that can be checked or unchecked.
-   - `RadioButton`: Represents a selectable option within a group.
-   - `SeekBar`: Allows the user to select a value within a specified range.
-   - `ProgressBar`: Displays the progress of an ongoing operation.
-   - `Switch`: Represents a toggle switch that can be turned on or off.
-   - Many more specialized views for specific purposes.
+- `Button`: Represents a clickable button.
+- `TextView`: Displays text on the screen.
+- `EditText`: Provides an interactive text input field.
+- `ImageView`: Displays images on the screen.
+- `CheckBox`: Represents a selectable option that can be checked or unchecked.
+- `RadioButton`: Represents a selectable option within a group.
+- `SeekBar`: Allows the user to select a value within a specified range.
+- `ProgressBar`: Displays the progress of an ongoing operation.
+- `Switch`: Represents a toggle switch that can be turned on or off.
+- Many more specialized views for specific purposes.
+
+Views are the basic building blocks of the UI, representing individual UI components such as buttons, text fields, or images. They are the visual elements that make up the user interface of an Android app.
+
+### 5. ViewGroup
+
+<a id="ViewGroup"></a>
+
+- `LinearLayout`: Arranges child views linearly either horizontally or vertically.
+- `RelativeLayout`: Arranges child views relative to one another or to the parent.
+- `FrameLayout`: Places child views on top of each other, with the last one added being the topmost.
+- `ConstraintLayout`: Provides flexible positioning and sizing of views with constraints.
+- `TableLayout`: Organizes child views in rows and columns.
+- `GridLayout`: Places child views in a grid of specified rows and columns.
+- `ScrollView`: Allows scrolling of child views when the content exceeds the available screen space.
+- `CardView`: Provides a container for displaying content with a consistent appearance and elevation.
+- Many more layout managers and containers for organizing and managing views.
 
 ViewGroup classes can contain and manage multiple child views and determine their position, size, and interaction behavior within the layout.
 
-### 5. ViewGroup
-<a id="ViewGroup"></a>
-   - `LinearLayout`: Arranges child views linearly either horizontally or vertically.
-   - `RelativeLayout`: Arranges child views relative to one another or to the parent.
-   - `FrameLayout`: Places child views on top of each other, with the last one added being the topmost.
-   - `ConstraintLayout`: Provides flexible positioning and sizing of views with constraints.
-   - `TableLayout`: Organizes child views in rows and columns.
-   - `GridLayout`: Places child views in a grid of specified rows and columns.
-   - `ScrollView`: Allows scrolling of child views when the content exceeds the available screen space.
-   - `CardView`: Provides a container for displaying content with a consistent appearance and elevation.
-   - Many more layout managers and containers for organizing and managing views.
-
-Views are the basic building blocks of the UI, representing individual UI components such as buttons, text fields, or images. ViewGroup, on the other hand, is a specialized View subclass that acts as a container for other views, organizing them in a specific manner.
-
 ### 6. Custom
+
 <a id="Custom"></a>
 
 You can create custom UI classes in Android by extending existing classes or implementing custom views. Example of creating a custom `Button` class:
@@ -202,4 +251,3 @@ Once you have created the custom `Button` class, you can use it in your layout X
 ```
 
 By creating custom UI classes, you have full control over the appearance and behavior of the views, allowing you to create unique and personalized user interfaces for your Android app.
-
