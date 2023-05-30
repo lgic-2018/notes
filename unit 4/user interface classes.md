@@ -7,7 +7,7 @@ A user interface (UI) class represents the visual elements and layout of an app'
 5. [View](#View)
 6. [Custom](#Custom)
 
-Example of a basic `Activity` class in Android Java:
+Example of a basic `Activity` class in Android:
 
 <!--  id activity  so thate when user click on #activity user should move here -->
 
