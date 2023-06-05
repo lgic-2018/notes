@@ -106,7 +106,8 @@ By using Butter Knife, you eliminate the need to use `findViewById()` for each v
 Remember to clean and rebuild your project after adding Butter Knife to ensure that the generated bindings are correctly processed.
 
 
-**Picasso**
+## **Picasso**
+
 Another popular third-party UI/UX library for Android is "Picasso" by Square. Picasso is an image loading and caching library that simplifies the process of displaying images in your Android app. It provides an easy-to-use API for downloading, resizing, caching, and displaying images efficiently.
 
 Here's an example of how you can use Picasso in your Android project:
@@ -202,7 +203,7 @@ In this example, we use `fitCenter()` to scale and center the image within the I
 
 Glide provides a flexible and powerful image loading solution with excellent performance and a wide range of customization options. It simplifies the process of working with images in Android apps and helps deliver a smooth and optimized user experience.
 
-**Retrofit**
+## **Retrofit**
 Another popular third-party UI/UX library for Android is "Retrofit" by Square. Retrofit is a type-safe HTTP client library that simplifies the process of making network requests and handling API communication in your Android app. It provides a high-level API for interacting with RESTful APIs and supports various data formats like JSON, XML, and more.
 
 Here's an example of how you can use Retrofit in your Android project:
