@@ -290,7 +290,22 @@ When the `Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS` intent is started
 
 {% tabs %}
 
-{% tab title="XML" %}
+{% tab title="AndroidManifest" %}
+{% code title="AndroidManifest.xml" overflow="wrap" lineNumbers="true" %}
+
+```xml
+     .....
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    .....
+```
+
+{% endcode %}
+{% endtab %}
+
+{% tab title="activity_main" %}
 {% code title="activity_main.xml" overflow="wrap" lineNumbers="true" %}
 
 ```xml
@@ -318,22 +333,8 @@ When the `Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS` intent is started
 {% endcode %}
 {% endtab %}
 
-{% tab title="XML" %}
-{% code title="activity_main.xml" overflow="wrap" lineNumbers="true" %}
 
-```xml
-     .....
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    .....
-```
-
-{% endcode %}
-{% endtab %}
-
-{% tab title="Java" %}
+{% tab title="NotificationHelper" %}
 {% code title="NotificationHelper.java" overflow="wrap" lineNumbers="true" %}
 
 ```java
@@ -373,7 +374,7 @@ public class NotificationHelper {
 {% endcode %}
 {% endtab %}
 
-{% tab title="Java" %}
+{% tab title="MainActivity" %}
 {% code title="MainActivity.java" overflow="wrap" lineNumbers="true" %}
 
 ```java
