@@ -22,7 +22,6 @@
   * [Async task and handlers](<unit 5/async task and handlers.md>)
   * [Broadcast receiver class](<unit 5/broadcast receiver class.md>)
   * [Networking](<unit 5/networking.md>)
-  * [Animations](<unit 5/retrofit with recycler view.md>)
   * [Retrofit](<unit 5/retrofit.md>)
   * [Threads](<unit 5/threads.md>)
   * [User notifications](<unit 5/user notifications.md>)
