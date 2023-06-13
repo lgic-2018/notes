@@ -1,9 +1,11 @@
-## 1. Describe processes, threads and broadcast Receiver class in android.
+# unit5
 
-1. **Processes:**
-In Android, a process is an isolated instance of an application running in the system. Each application typically runs in its own process to ensure security, stability, and resource management. A process has its own memory space and system resources, and it runs independently of other processes. By default, Android starts the main process for an application when it is launched. However, you can also configure additional processes for specific components or functionalities within the application.
+### 1. Describe processes, threads and broadcast Receiver class in android.
+
+1. **Processes:** In Android, a process is an isolated instance of an application running in the system. Each application typically runs in its own process to ensure security, stability, and resource management. A process has its own memory space and system resources, and it runs independently of other processes. By default, Android starts the main process for an application when it is launched. However, you can also configure additional processes for specific components or functionalities within the application.
 
 Example:
+
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapp">
@@ -23,9 +25,8 @@ Example:
 
 In this example, the MainActivity is configured to run in a separate process named "myprocess".
 
-2. Threads:
-A thread is a lightweight unit of execution within a process. In Android, multithreading is crucial to perform concurrent tasks without blocking the main UI thread, which would lead to unresponsive user interfaces. By creating and managing threads, you can execute time-consuming operations in the background, keeping the UI thread free to handle user interactions. Android provides several mechanisms for working with threads, including the Thread class, AsyncTask, and Handlers.
-example 
+2. Threads: A thread is a lightweight unit of execution within a process. In Android, multithreading is crucial to perform concurrent tasks without blocking the main UI thread, which would lead to unresponsive user interfaces. By creating and managing threads, you can execute time-consuming operations in the background, keeping the UI thread free to handle user interactions. Android provides several mechanisms for working with threads, including the Thread class, AsyncTask, and Handlers. example
+
 ```java
 public class MyThread extends Thread {
     @Override
@@ -38,12 +39,11 @@ public class MyThread extends Thread {
 MyThread myThread = new MyThread();
 myThread.start();
 ```
+
 In this example, the `MyThread` class extends the `Thread` class and overrides the `run()` method. The time-consuming operations are performed in the `run()` method. Then, an instance of `MyThread` is created and started using the `start()` method.
 
-3. BroadcastReceiver class:
-The BroadcastReceiver class is a fundamental component in Android that allows the system or other applications to deliver events or messages to your application. It enables you to listen and respond to system-wide or application-specific broadcast intents. A broadcast intent is a message that can be sent by the system or other applications to signal specific events or actions, such as a low battery warning, device boot, network connectivity changes, or custom events defined by your application.
-Example 
-To use the BroadcastReceiver class, you typically create a subclass of BroadcastReceiver and override the `onReceive()` method. In this method, you define the logic to handle the received broadcast intent. 
+3. BroadcastReceiver class: The BroadcastReceiver class is a fundamental component in Android that allows the system or other applications to deliver events or messages to your application. It enables you to listen and respond to system-wide or application-specific broadcast intents. A broadcast intent is a message that can be sent by the system or other applications to signal specific events or actions, such as a low battery warning, device boot, network connectivity changes, or custom events defined by your application. Example To use the BroadcastReceiver class, you typically create a subclass of BroadcastReceiver and override the `onReceive()` method. In this method, you define the logic to handle the received broadcast intent.
+
 ```java
 public class MyBroadcastReceiver extends BroadcastReceiver {
     @Override
@@ -54,27 +54,28 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 }
 ```
 
-You can register your BroadcastReceiver dynamically at runtime or declare it in the AndroidManifest.xml file to automatically receive the specified broadcasts.
-example of BroadcastReceiver dynamically at runtime
+You can register your BroadcastReceiver dynamically at runtime or declare it in the AndroidManifest.xml file to automatically receive the specified broadcasts. example of BroadcastReceiver dynamically at runtime
+
 ```java
 MyBroadcastReceiver myReceiver = new MyBroadcastReceiver();
 IntentFilter intentFilter = new IntentFilter();
 intentFilter.addAction("com.example.myapp.MY_ACTION");
 context.registerReceiver(myReceiver, intentFilter);
 ```
+
 Example of declaring it in the AndroidManifest.xml file
-```xml  
+
+```xml
 <receiver android:name=".MyBroadcastReceiver">
     <intent-filter>
         <action android:name="com.example.myapp.MY_ACTION" />
     </intent-filter>
 </receiver>
 ```
+
 It's important to note that starting from Android 10 (API level 29), there are limitations on receiving broadcasts in the background to improve privacy and security. Apps targeting Android 10 or higher have restrictions on receiving implicit broadcasts and need to use alternative approaches like foreground services or explicit broadcasts.
 
-
-
-## 2. What is an alarm Manager? What are the types of alarms?
+### 2. What is an alarm Manager? What are the types of alarms?
 
 The AlarmManager is a system service that allows you to schedule and perform actions at specified times or intervals, even if your application is not currently running. It provides a way to schedule your application to execute code at a specific time or repeatedly after a certain interval.
 
@@ -90,19 +91,14 @@ These are some of the commonly used methods of AlarmManager. Each method require
 
 The AlarmManager supports different types of alarms, including:
 
-1. RTC_WAKEUP - This alarm type uses the real-time clock (RTC) and wakes up the device to trigger the alarm. It ignores any sleep or low-power states of the device. Useful for time-sensitive alarms that need to wake up the device from sleep.
-
+1. RTC\_WAKEUP - This alarm type uses the real-time clock (RTC) and wakes up the device to trigger the alarm. It ignores any sleep or low-power states of the device. Useful for time-sensitive alarms that need to wake up the device from sleep.
 2. RTC - This alarm type uses the real-time clock (RTC) but does not wake up the device. The alarm will be delivered to the application when the device is next awake. Useful for alarms that don't require immediate execution.
-
-3. ELAPSED_REALTIME_WAKEUP - This alarm type uses the elapsed real-time clock and wakes up the device to trigger the alarm. It does not use the wall clock time and ignores sleep or low-power states. Useful for time-sensitive alarms that need to wake up the device from sleep.
-
-4. ELAPSED_REALTIME - This alarm type uses the elapsed real-time clock and does not wake up the device. The alarm will be delivered to the application when the device is next awake. Useful for alarms that don't require immediate execution.
+3. ELAPSED\_REALTIME\_WAKEUP - This alarm type uses the elapsed real-time clock and wakes up the device to trigger the alarm. It does not use the wall clock time and ignores sleep or low-power states. Useful for time-sensitive alarms that need to wake up the device from sleep.
+4. ELAPSED\_REALTIME - This alarm type uses the elapsed real-time clock and does not wake up the device. The alarm will be delivered to the application when the device is next awake. Useful for alarms that don't require immediate execution.
 
 When setting an alarm, you need to specify the alarm type and provide the time or interval at which the alarm should trigger. The AlarmManager takes care of managing the alarms even if the device is rebooted, ensuring that the scheduled actions are still triggered as intended.
 
-
-## 3. example of alarm manager using java 
-
+### 3. example of alarm manager using java
 
 ```java
 // Create an explicit intent for the AlarmReceiver class
@@ -161,10 +157,9 @@ In this example, the `onReceive()` method of `AlarmReceiver` displays a toast me
 Remember to handle any necessary permissions, such as the `WAKE_LOCK` permission, if required, in your AndroidManifest.xml file.
 
 This example demonstrates how to schedule a one-time alarm using the AlarmManager. You can modify the code to set repeating alarms, use different alarm types, or perform different actions when the alarm triggers based on your specific needs.
-    
 
+### 4. What is Broad Cast Receiver Class? How is it used explain program ?
 
-## 4. What is Broad Cast Receiver Class? How is it used explain program ?
 A BroadcastReceiver class in Android is a component that allows your application to listen for and respond to system-wide or application-specific broadcast intents. It acts as a receiver for broadcast messages sent by the system or other applications, enabling your app to react and perform actions based on those messages.
 
 To use a BroadcastReceiver, you need to create a subclass of the BroadcastReceiver class and override the `onReceive()` method. This method gets called when a broadcast intent matching the registered intent filter is received. Inside the `onReceive()` method, you define the logic to handle the received broadcast intent.
@@ -172,6 +167,7 @@ To use a BroadcastReceiver, you need to create a subclass of the BroadcastReceiv
 Here's an example that demonstrates the usage of a BroadcastReceiver class:
 
 1. Create the BroadcastReceiver subclass:
+
 ```java
 public class MyBroadcastReceiver extends BroadcastReceiver {
     @Override
@@ -187,6 +183,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 In this example, we create a subclass of BroadcastReceiver named `MyBroadcastReceiver` and override the `onReceive()` method. Inside the `onReceive()` method, we handle the received broadcast intent by displaying a toast message.
 
 2. Register the BroadcastReceiver dynamically:
+
 ```java
 // Create an instance of the BroadcastReceiver
 MyBroadcastReceiver myReceiver = new MyBroadcastReceiver();
@@ -204,6 +201,7 @@ In this step, we create an instance of `MyBroadcastReceiver`. We also create an 
 Finally, we register the receiver by calling `registerReceiver()` on the context, passing the receiver instance and the intent filter.
 
 3. Unregister the BroadcastReceiver:
+
 ```java
 context.unregisterReceiver(myReceiver);
 ```
@@ -214,12 +212,11 @@ That's it! With this example, you have created a BroadcastReceiver class, regist
 
 This allows your application to receive and respond to broadcast intents, enabling communication and event-driven behavior between different components or even between different applications.
 
-## 5. Write an application that demonstrates how to perform operations using Asyntask on a background thread.
-
+### 5. Write an application that demonstrates how to perform operations using Asyntask on a background thread.
 
 1. Create a new Android project in Android Studio and add the following code to the MainActivity.java file:
 
-**MainActivity.java**
+{% code title="MainActivity.java" overflow="wrap" lineNumbers="true" %}
 ```java
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -302,9 +299,11 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 ```
+{% endcode %}
 
-2. Open the activity_main.xml file and add the following code:
+2. Open the activity\_main.xml file and add the following code:
 
+{% code title="activity_main.xml" overflow="wrap" lineNumbers="true" %}
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -338,6 +337,7 @@ public class MainActivity extends AppCompatActivity {
         android:textAlignment="center"/>
 </RelativeLayout>
 ```
+{% endcode %}
 
 In this example, we have a simple layout containing a Button, ProgressBar
 
@@ -348,6 +348,3 @@ The `onPreExecute()` method is called before the background operation starts, wh
 Make sure to add the necessary imports and declare the MainActivity in the AndroidManifest.xml file.
 
 When you run the application, clicking the "Start Task" button will initiate the background operation, and the progress will be displayed in the ProgressBar. Once the task is completed, the final result will be shown in the TextView.
-
-This demonstrates how to use `AsyncTask` to perform operations on a background thread while updating the UI based on the progress and result of the background task.
-
