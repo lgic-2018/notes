@@ -1,8 +1,13 @@
-In Java, a thread is an independent path of execution within a program. Threads allow concurrent execution, enabling multiple tasks to be performed simultaneously. The life cycle of a thread in Java consists of several stages, and understanding these stages is crucial for effective thread management.
+## Multithreading in Java
+
+Multithreading is a Java feature that allows concurrent execution of two or more parts of a program for maximum utilization of CPU. Each part of such program is called a thread. So, threads are light-weight, independent path of execution within a program. Threads allow concurrent execution, enabling multiple tasks to be performed simultaneously.
+
+## Lifecycle and States of a Thread in Java
+
+The life cycle of a thread in Java consists of several stages, and understanding these stages is crucial for effective thread management.
 Understanding the life cycle of a thread in Java allows developers to write efficient and robust multithreaded applications. By properly managing threads and their transitions between stages, you can ensure smooth execution and avoid issues like deadlocks or resource contention.
 
 ![java-jvm](../images/threadLifeCycle.jpg)
-
 
 Let's explore each stage in detail with an example.
 
@@ -62,6 +67,7 @@ myThread.stop();
 ```
 
 It's important to note that thread scheduling and transitions between these stages are managed by the Java Virtual Machine (JVM) and the operating system. Developers have limited control over the scheduling, but they can influence it using methods like `yield()` and `interrupt()`.
+
 **code snippet demonstrating the thread life cycle:**
 
 ```java
@@ -104,9 +110,15 @@ It's important to note that thread scheduling and transitions between these stag
 }
 ```
 
-To work with threads in Java, you can use the `Thread` class or the `Runnable` interface.
+Threads can be created by using two mechanisms :
 
-**Example using Thread class**:
+1. Extending the Thread class
+2. Implementing the Runnable Interface
+
+## Extending the Thread class:
+
+We create a class that extends the java.lang.Thread class. This class overrides the run() method available in the Thread class. A thread begins its life inside run() method. We create an object of our new class and call start() method to start the execution of a thread. Start() invokes the run() method on the Thread object.
+For example:
 
 ```java
 public class ThreadExample extends Thread {
@@ -156,8 +168,11 @@ Inside the `run()` method, we print a message indicating that the thread is runn
 
 In the `main()` method, we create two instances of `ThreadExample` and start them by calling the `start()` method. This causes each thread to execute its `run()` method in a separate thread of execution. We also use the `join()` method to wait for the threads to finish before the main thread continues execution.
 
+## Implementing the Runnable Interface
 
-**Example using Runnable class**:
+We create a new class which implements java.lang.Runnable interface and override run() method. Then we instantiate a Thread object and call start() method on this object.
+
+For example:
 
 ```java
 public class RunnableExample implements Runnable {
@@ -215,6 +230,8 @@ As before, the main thread waits for the two threads to finish using the `join()
 
 Using the `Runnable` interface allows for better flexibility as it separates the task from the thread itself. Multiple threads can share the same `Runnable` instance, which can be useful in certain scenarios.
 
+## Differences between `Runnable` and `Thread`
+
 The differences between using the `Runnable` interface and extending the `Thread` class in Java for creating threads:
 
 |                         | `Runnable` Interface                                                                                                                                            | `Thread` Class                                                                                                   |
@@ -231,7 +248,8 @@ The differences between using the `Runnable` interface and extending the `Thread
 
 Both approaches have their merits depending on the specific requirements of your application. However, in general, using the `Runnable` interface is more recommended due to its flexibility, better separation of concerns, and support for composition and resource sharing.
 
-**Threads in Android**:
+## Threads in Android Applications:
+
 In Android, you can use threads to perform time-consuming tasks in the background and keep the main UI thread responsive. However, Android provides higher-level abstractions for managing concurrent operations, such as `AsyncTask`, `Handler`, and `ThreadExecutor`. These abstractions handle thread management and synchronization for you, making it easier to work with threads in an Android application.
 
 Here's an example of using the `Thread` class directly in an Android Java application:
