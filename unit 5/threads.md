@@ -1,4 +1,108 @@
-A thread in java is a unit of execution that can run concurrently with other threads within a program. Threads allow multiple tasks to be executed simultaneously, making it possible to perform multiple operations concurrently and improve the overall efficiency and responsiveness of a program.
+In Java, a thread is an independent path of execution within a program. Threads allow concurrent execution, enabling multiple tasks to be performed simultaneously. The life cycle of a thread in Java consists of several stages, and understanding these stages is crucial for effective thread management.
+Understanding the life cycle of a thread in Java allows developers to write efficient and robust multithreaded applications. By properly managing threads and their transitions between stages, you can ensure smooth execution and avoid issues like deadlocks or resource contention.
+
+![java-jvm](../images/threadLifeCycle.jpg)
+
+
+Let's explore each stage in detail with an example.
+
+1. New: In the new stage, a thread is created but not yet started. The thread is in this stage when the `Thread` object is instantiated using the `new` keyword or by extending the `Thread` class. For example:
+
+```java
+Thread myThread = new Thread();
+```
+
+2. Runnable: In the runnable stage, the thread is ready to run but not currently executing. The thread can be in this stage after calling the `start()` method on the `Thread` object. For example:
+
+```java
+myThread.start();
+```
+
+3. Running: In the running stage, the thread is actively executing its code. It moves from the runnable stage to the running stage when the scheduler selects it for execution. The code within the `run()` method of the `Thread` class or a class implementing the `Runnable` interface is executed in this stage.
+
+```java
+public class MyThread implements Runnable {
+    public void run() {
+        // Thread code here
+    }
+}
+```
+
+4. Blocked: A thread enters the blocked stage when it is temporarily unable to run. This can occur if the thread is waiting for a resource, such as a lock or input/output operation, to become available. Once the blocking condition is resolved, the thread moves back to the runnable stage.
+
+```java
+synchronized (someObject) {
+    // Code that requires exclusive access to someObject
+}
+```
+
+5. Waiting: Threads enter the waiting stage when they are waiting for another thread to perform a particular action. This can happen when a thread invokes the `wait()` method on an object or waits indefinitely for a notification from another thread.
+
+```java
+synchronized (someObject) {
+    someObject.wait();
+}
+```
+
+6. Timed Waiting: In the timed waiting stage, a thread waits for a specified period of time. This can occur when a thread calls methods like `sleep()` or `join()`, specifying a time duration for the thread to wait.
+
+```java
+try {
+    Thread.sleep(1000); // Sleep for 1 second
+} catch (InterruptedException e) {
+    // Exception handling
+}
+```
+
+7. Terminated: A thread enters the terminated stage when its `run()` method completes execution or when the thread is explicitly stopped by invoking the `stop()` method. Once a thread is terminated, it cannot be restarted.
+
+```java
+// Terminating a thread
+myThread.stop();
+```
+
+It's important to note that thread scheduling and transitions between these stages are managed by the Java Virtual Machine (JVM) and the operating system. Developers have limited control over the scheduling, but they can influence it using methods like `yield()` and `interrupt()`.
+**code snippet demonstrating the thread life cycle:**
+
+```java
+ public class MyThread implements Runnable {
+    public void run() {
+        System.out.println("Thread is running.");
+        try {
+            Thread.sleep(2000); // Simulating some work
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Thread has completed execution.");
+    }
+
+    public static void main(String[] args) {
+        Thread myThread = new Thread(new MyThread());
+
+        System.out.println("Thread is in the new state.");
+
+        myThread.start();
+
+        System.out.println("Thread is in the runnable state.");
+
+        try {
+            Thread.sleep(1000); // Giving some time for the thread to start
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Thread is in the running state.");
+
+        try {
+            Thread.sleep(3000); // Giving some time for the thread to complete its execution
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Thread is in the terminated state.");
+    }
+}
+```
 
 To work with threads in Java, you can use the `Thread` class or the `Runnable` interface.
 
@@ -52,11 +156,8 @@ Inside the `run()` method, we print a message indicating that the thread is runn
 
 In the `main()` method, we create two instances of `ThreadExample` and start them by calling the `start()` method. This causes each thread to execute its `run()` method in a separate thread of execution. We also use the `join()` method to wait for the threads to finish before the main thread continues execution.
 
-When you run this program, you'll see that the messages from the threads may appear interleaved, indicating that the threads are executing concurrently. The main thread waits for the two threads to finish before printing its own completion message.
 
-
-**Example using Runnable  class**:
-
+**Example using Runnable class**:
 
 ```java
 public class RunnableExample implements Runnable {
@@ -114,9 +215,21 @@ As before, the main thread waits for the two threads to finish using the `join()
 
 Using the `Runnable` interface allows for better flexibility as it separates the task from the thread itself. Multiple threads can share the same `Runnable` instance, which can be useful in certain scenarios.
 
+The differences between using the `Runnable` interface and extending the `Thread` class in Java for creating threads:
 
+|                         | `Runnable` Interface                                                                                                                                            | `Thread` Class                                                                                                   |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Inheritance             | Does not require extending a specific class.                                                                                                                    | Requires extending the `Thread` class.                                                                           |
+| Reusability             | Can be used to implement multiple interfaces.                                                                                                                   | Cannot be used if the class needs to extend another class.                                                       |
+| Separation of Concerns  | Supports better separation of concerns by separating the task logic from thread management.                                                                     | Combines both the task logic and thread management in a single class.                                            |
+| Code Structure          | The `run()` method containing task logic is implemented separately and passed to a `Thread` object.                                                             | The task logic is implemented directly within the `Thread` class by overriding the `run()` method.               |
+| Object-Oriented Design  | Promotes composition over inheritance, as the class implementing `Runnable` can be used with any class that accepts a `Runnable` object.                        | Uses inheritance to create a new class that is a specialized version of the `Thread` class.                      |
+| Resource Sharing        | Encourages better resource sharing and avoids resource contention, as multiple threads can share the same `Runnable` instance.                                  | Each `Thread` instance has its own separate resources.                                                           |
+| Concurrency Control     | Provides a more flexible approach for concurrency control, as multiple `Runnable` objects can be executed by a pool of threads managed by an `ExecutorService`. | Provides less control over thread execution and management, as each `Thread` instance manages its own execution. |
+| Thread Creation         | Requires passing the `Runnable` instance to a `Thread` object for thread creation.                                                                              | Thread creation is direct, as the `Thread` instance is already created.                                          |
+| Extending Other Classes | Allows extending other classes or implementing other interfaces alongside `Runnable`.                                                                           | Limits the ability to extend other classes alongside `Thread`.                                                   |
 
-
+Both approaches have their merits depending on the specific requirements of your application. However, in general, using the `Runnable` interface is more recommended due to its flexibility, better separation of concerns, and support for composition and resource sharing.
 
 **Threads in Android**:
 In Android, you can use threads to perform time-consuming tasks in the background and keep the main UI thread responsive. However, Android provides higher-level abstractions for managing concurrent operations, such as `AsyncTask`, `Handler`, and `ThreadExecutor`. These abstractions handle thread management and synchronization for you, making it easier to work with threads in an Android application.
@@ -134,6 +247,8 @@ public class MyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my);
 
         // Create a new thread
+        //using lamda expression
+        // Thread backgroundThread = new Thread(() -> {
         Thread backgroundThread = new Thread(new Runnable() {
             @Override
             public void run() {
