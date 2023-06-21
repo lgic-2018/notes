@@ -29,8 +29,6 @@ Publishing your app to the Android Play Store involves several steps. Here's a d
 
 Remember to review the Play Store's policies and guidelines to ensure your app meets the requirements. Also, keep an eye on any updates or changes to the publishing process, as Google may introduce new features or requirements over time.
 
-
-
 ## 2. Define Sqlite Database. Write a sample sqlite code to create a database named "dictionary" in a public class DictionaryOpenHelper extending SQliteOpenHelper.
 
 SQLite is a lightweight, embedded, relational database management system that is widely used in various applications, including mobile apps. It provides a simple and efficient way to store and manage structured data. Here's an example of SQLite code to create a database named "dictionary" in a public class called DictionaryOpenHelper, which extends SQLiteOpenHelper:
@@ -80,7 +78,7 @@ To use this `DictionaryOpenHelper` class, you can create an instance of it in yo
 
 ## 3. What is data management? Explain Internal and external storage.
 
-Data management in the context of Android  refers to the processes and techniques involved in handling data within an Android application. It includes tasks such as storing, retrieving, manipulating, and organizing data to ensure efficient and effective usage.
+Data management in the context of Android refers to the processes and techniques involved in handling data within an Android application. It includes tasks such as storing, retrieving, manipulating, and organizing data to ensure efficient and effective usage.
 
 **Internal Storage in Android**:
 Internal storage refers to the private storage space available to an application within the device's internal memory. It is primarily used to store private data that is specific to the application. When data is stored internally, it remains private and inaccessible to other applications unless explicitly shared.
@@ -105,11 +103,13 @@ try {
 **External Storage in Android**:
 External storage refers to the shared storage space that is accessible by multiple applications and users. It typically includes the device's SD card or any other removable media. External storage provides a way to store larger files or files that need to be shared between applications.
 
-To access external storage in Android, you need to request the appropriate permissions in the AndroidManifest.xml file, such as 
+To access external storage in Android, you need to request the appropriate permissions in the AndroidManifest.xml file, such as
+
 ```xml
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
+
 Starting from Android 10 (API level 29), you also need to handle scoped storage for accessing external storage.
 
 Here's an example of writing data to a file in external storage:
@@ -129,8 +129,7 @@ try {
 }
 ```
 
-
-## 4. Explain inbuilt database and data type supported in arxiroid.
+## 4. Explain inbuilt database and data type supported in android.
 
 Android provides an inbuilt database framework called SQLite, which is a lightweight, open-source, relational database management system (RDBMS) that is embedded into the Android operating system. SQLite is widely used in Android app development for storing and managing structured data.
 
