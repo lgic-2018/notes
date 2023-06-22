@@ -22,7 +22,6 @@ The AlarmManager supports different types of alarms, including:
 
 When setting an alarm, you need to specify the alarm type and provide the time or interval at which the alarm should trigger. The AlarmManager takes care of managing the alarms even if the device is rebooted, ensuring that the scheduled actions are still triggered as intended.
 
-
 ***Example:***
 Here's a simple example of how you can implement an alarm in Android Studio using Java:
 
